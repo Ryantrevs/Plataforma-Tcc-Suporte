@@ -1,0 +1,101 @@
+﻿@model IEnumerable<ConsultoriaApplication.Models.ViewModel.SaleViewModel>
+
+@{
+    ViewData["Title"] = "Table";
+}
+
+<div class="container-fluid">
+
+    <h1 class="h1 text-white">Registro de vendas</h1>
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th class="text-white">
+                    <!--@Html.DisplayNameFor(model => model.Sale.Id)-->
+                    Email do Cliente
+                </th>
+                <th class="text-white">
+                    Vendedor Responsável
+                </th>
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.Sale.Cartao)
+                </th>
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.Sale.Fechamento)
+                </th>
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.Sale.EstagioPagamento)
+                </th>
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.Sale.ValorTotal)
+                </th>
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.Sale.ValorPago)
+                </th>
+                <th colspan="3" class="text-white">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Client.Mail)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.User.Nome)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Sale.Cartao)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Sale.Fechamento)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Sale.EstagioPagamento)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Sale.ValorTotal)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Sale.ValorPago)
+                    </td>
+                    <td class="text-white">
+                        @Html.ActionLink("Mais", "Details", new { id = item.Sale.Id }, new { @class = "btn btn-info" })
+                        <!--@Html.ActionLink("Delete", "DeleteSale", new { id = item.Sale.Id }, new { @class = "btn btn-danger" })-->
+
+                    </td>
+                    <td class="text-white">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Sale.Id }, new { @class = "btn btn-warning" })
+                    </td>
+                    <td class="text-white">
+                        <button type="button" class="btn btn-danger" id="myBtn" onclick="abreModal('@("myModal"+item.Sale.Id.ToString())')">
+                            Delete
+                        </button>
+                        <div id="@("myModal"+item.Sale.Id.ToString())" class="modal myModal" onclick="fechaModal2(this.id, event,this)">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <span class="close" onclick="fechaModal('@("myModal"+item.Sale.Id.ToString())')">&times;</span>
+                                <p>Tem certeza que deseja deletar?</p>
+                                <p>Trabalho de : @item.Client.Name</p>
+                                <p>Vendedor responsável: @item.User.Nome</p>
+                                <button type="button" class="btn btn-danger" id="myBtn" onclick="deletaSale('@item.Sale.Id'); fechaModal('@("myModal"+item.Sale.Id.ToString())');">
+                                    Deletar
+                                </button>
+                            </div>
+
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+
+
+
+</div>

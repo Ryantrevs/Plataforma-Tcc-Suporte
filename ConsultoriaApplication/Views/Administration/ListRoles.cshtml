@@ -1,0 +1,79 @@
+﻿@model IEnumerable<IdentityRole>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8"><h1 class="h1 text-light">Lista de niveis de acesso</h1></div>
+    </div>
+    
+    <div class="justify-content-center">
+        @if (Model.Any())
+        {
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8"><a asp-controller="Administration" asp-action="CreateRole" class="btn btn-primary">Criar nivel</a></div>
+            </div>
+            foreach (var role in Model)
+            {
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="card col-8 bg-dark text-white" >
+                        <div class="card-header">ID do nivel:@(role.Id)</div>
+                        <div class="card-body">
+                            <h5 class="card-title">Nome do nivel:@(role.Name)</h5>
+                        </div>
+                        <div class="card-footer d-flex">
+                            <a class="btn btn-warning m-sm-2" asp-route-id="@role.Id" asp-controller="Administration" asp-action="EditRole">Editar</a>
+
+                            <form method="post" class="m-sm-2" asp-controller="Administration" asp-action="DeleteRole" asp-route-Id="@role.Id">
+
+                                <span id="confirmDeleteSpan_@role.Id" style="display:none;">
+                                    <span>Tem certeza que deseja deletar?</span>
+                                    <button type="submit" class="btn btn-danger">Sim</button>
+                                    <a href="#confirmDeleteSpan_@role.Id" onclick="confirmDelete('@role.Id',false)" class="btn btn-primary">Não</a>
+                                </span>
+
+                                <span id="deleteSpan_@role.Id">
+                                    <a  href="#confirmDeleteSpan_@role.Id" onclick="confirmDelete('@role.Id',true)" class="btn btn-danger">Delete</a>
+                                </span>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        }
+        else
+        {
+            <div class="card bg-dark text-white">
+                <div class="card-header">Nenhum Nivel</div>
+                <div class="card-body">
+                    <h5>Nehum nivel de acesso declarado</h5>
+                    <a asp-controller="Administration" asp-action="CreateRole" class="btn btn-primary">Criar nivel</a>
+                </div>
+            </div>
+
+
+        }
+    </div>
+
+
+</div>
+
+<script>
+    function confirmDelete(uniqueId, isDeleteClicked) {
+        if (isDeleteClicked) {
+            console.log("uniqueId", uniqueId)
+            $("#deleteSpan_" + uniqueId).hide();
+            $("#confirmDeleteSpan_" + uniqueId).show();
+            console.log("mostra");
+        } else {
+            $("#deleteSpan_" + uniqueId).show();
+            $("#confirmDeleteSpan_" + uniqueId).hide();
+            console.log("esconde")
+        }
+    }
+</script>

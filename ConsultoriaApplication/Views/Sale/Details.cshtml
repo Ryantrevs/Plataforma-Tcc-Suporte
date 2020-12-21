@@ -1,0 +1,159 @@
+﻿@model ConsultoriaApplication.Models.ViewModel.SaleViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da venda";
+}
+
+<div class="container bg-dark text-white rounded">
+    <h1 class="h1 text-white">Detalhes da Venda</h1>
+
+    <div>
+        <a asp-action="Table" class="btn btn-secondary m-md-2">Voltar</a>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Sale.Id }, new { @Class = "btn btn-warning" })
+
+        <div class="row">
+            <div class="col">
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Informações do vendedor responsável</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nome</td>
+                            <td>@Model.User.Nome</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>@Model.User.Email</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Informações da venda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Pagamento em Cartão</td>
+                            <td>@(@Model.Sale.Cartao ? "Sim" : "Não" )</td>
+                        </tr>
+                        <tr>
+                            <td>Fechamento</td>
+                            <td>@(@Model.Sale.Fechamento.ToString("dd/MM/yyyy"))</td>
+                        </tr>
+                        <tr>
+                            <td>Estagio do pagamento</td>
+                            <td>@Model.Sale.EstagioPagamento</td>
+                        </tr>
+                        <tr>
+                            <td>Valor Total</td>
+                            <td>@Model.Sale.ValorTotal</td>
+                        </tr>
+                        <tr>
+                            <td>Estagio do pagamento</td>
+                            <td>@Model.Sale.ValorPago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Informações do Cliente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Email</td>
+                            <td> @Model.Client.Mail</td>
+                        </tr>
+                        <tr>
+                            <td>Nome</td>
+                            <td>@Model.Client.Name</td>
+                        </tr>
+                        <tr>
+                            <td>Sexo</td>
+                            <td>@Model.Client.Sex</td>
+                        </tr>
+                        <tr>
+                            <td>Telefone</td>
+                            <td>@Model.Client.Tel</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col">
+                <table class="table text-white">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Informações do Trabalho</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Instituição de ensino</td>
+                            <td>@Model.Job.InstuicaoEnsino</td>
+                        </tr>
+                        <tr>
+                            <td>Nome do Orientador</td>
+                            <td>@Model.Job.NomeOrientador</td>
+                        </tr>
+                        <tr>
+                            <td>Curso</td>
+                            <td>@Model.Job.Curso</td>
+                        </tr>
+                        <tr>
+                            <td>Tema</td>
+                            <td>@Model.Job.Tema</td>
+                        </tr>
+                        <tr>
+                            <td>Numero de paginas</td>
+                            <td>@Model.Job.NumPaginas</td>
+                        </tr>
+                        <tr>
+                            <td>Previa 1</td>
+                            <td>@( @Model.Job.Previa_1.ToString("dd/MM/yyyy"))</td>
+                        </tr>
+                        <tr>
+                            <td>Previa 2</td>
+                            <td>@( @Model.Job.Previa_2.ToString("dd/MM/yyyy"))</td>
+                        </tr>
+                        <tr>
+                            <td>Previa 3</td>
+                            <td>@( @Model.Job.Previa_3.ToString("dd/MM/yyyy"))</td>
+                        </tr>
+                        <tr>
+                            <td>Data de entraga</td>
+                            <td>@( @Model.Job.DataEntrega.ToString("dd/MM/yyyy"))</td>
+                        </tr>
+                        <tr>
+                            <td>Observações</td>
+                            <td>@Model.Job.Observacoes</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--@Html.ActionLink("Editar", "EditJob", new { id = Model.Job.Id},new { @Class ="btn btn-warning" })-->
+            </div>
+        </div>
+
+        <a asp-action="Table" class="m-md-2 btn btn-secondary">Voltar</a>
+    </div>
+
+</div>
+
+

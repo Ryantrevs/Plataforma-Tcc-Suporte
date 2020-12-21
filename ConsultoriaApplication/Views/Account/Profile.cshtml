@@ -1,0 +1,21 @@
+﻿@model ConsultoriaApplication.Models.ViewModel.ProfileViewModel
+@{ 
+    ViewBag.Title = "Perfil";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8 card bg-dark text-white">
+            <div class="card-header">
+                <h1 class="h1">Perfil</h1>
+            </div>
+            <div class="card-body">
+                <h3 class="h3">Nome:<span class="text-danger">@Model.user.Nome</span></h3>
+                <h3 class="h3">Email: <span class="text-danger">@Model.user.Email</span></h3>                
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-warning" asp-controller="Account" asp-action="EditProfile">Editar</a>
+            </div>
+        </div>
+    </div>
+    
+</div>

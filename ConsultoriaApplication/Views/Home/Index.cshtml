@@ -1,0 +1,39 @@
+﻿@model ConsultoriaApplication.Models.ViewModel.EnvioViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+@{ 
+    var userInfo = ViewBag.UserInfo;//passa informação usuario
+}
+<section class="principal">
+     <div class="card-submit">
+         <form method="post" asp-action="index" enctype="multipart/form-data">
+             <div class="input-group">
+                 <label class="label"><b>Id:</b></label>
+                 <input asp-for=@Model.id placeholder="id@gmail.com" type="text" id="id" />
+             </div>
+             <div class="input-group">
+                 <label as class="label"><b>Arquivos:</b></label>
+                 <input asp-for=@Model.arquivos type="file" id="file" multiple="multiple" class="botao">Upload</input>
+
+             </div>
+             <div class="input-group">
+                 <select asp-for=@Model.tipoEntrega>
+                     @{ foreach (var item in Enum.GetValues(typeof(SendType))){
+                             <option>@item.ToString()</option>
+                     }
+
+                     }
+                 </select>
+
+             </div>
+             <div class="teste">
+                 <input class="botao" type="submit" value="Enviar" />
+             </div>
+         </form>
+     </div>
+  
+
+
+
+</section>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ConsultoriaApplication.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid">
+
+    <h1 class="h1 text-white">Clientes registrados</h1>
+
+
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th class="text-white">
+                    Nome
+                </th>
+                <th class="text-white">
+                    Sexo
+                </th>
+                <th class="text-white">
+                    Email
+                </th>
+                <th class="text-white">
+                    Telefone
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Sex)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Mail)
+                    </td>
+                    <td class="text-white">
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td class="text-white">
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @Class = "btn btn-warning" })
+                        <!--@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,85 @@
+﻿@model ConsultoriaApplication.Models.Job
+
+@{
+    ViewData["Title"] = "EditJob";
+}
+
+<h1>EditJob</h1>
+
+<h4>Job</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditJob">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label" >Id do Cliente</label>
+                <input asp-for="ClientId" class="form-control" readonly/>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" readonly/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InstuicaoEnsino" class="control-label"></label>
+                <input asp-for="InstuicaoEnsino" class="form-control" />
+                <span asp-validation-for="InstuicaoEnsino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomeOrientador" class="control-label"></label>
+                <input asp-for="NomeOrientador" class="form-control" />
+                <span asp-validation-for="NomeOrientador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curso" class="control-label"></label>
+                <input asp-for="Curso" class="form-control" />
+                <span asp-validation-for="Curso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tema" class="control-label"></label>
+                <input asp-for="Tema" class="form-control" />
+                <span asp-validation-for="Tema" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumPaginas" class="control-label"></label>
+                <input asp-for="NumPaginas" class="form-control" />
+                <span asp-validation-for="NumPaginas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Previa_1" class="control-label"></label>
+                <input asp-for="Previa_1" type="date" class="form-control" value="@Model.Previa_1.ToString("yyyy-MM-dd")"/>
+                <span asp-validation-for="Previa_1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Previa_2" class="control-label"></label>
+                <input asp-for="Previa_2" type="date" class="form-control" value="@Model.Previa_2.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="Previa_2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Previa_3" class="control-label"></label>
+                <input asp-for="Previa_3" type="date" class="form-control" value="@Model.Previa_3.ToString("yyyy-MM-dd")"/>
+                <span asp-validation-for="Previa_3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataEntrega" class="control-label"></label>
+                <input asp-for="DataEntrega" type="date" class="form-control" value="@Model.DataEntrega.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="DataEntrega" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observacoes" class="control-label"></label>
+                <input asp-for="Observacoes" class="form-control" />
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

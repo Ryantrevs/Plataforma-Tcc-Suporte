@@ -1,0 +1,125 @@
+﻿@model List<ConsultoriaApplication.Models.ViewModel.TasksViewModel>
+
+@{ ViewData["Title"] = "Tarefas"; }
+<body>
+    <div class="menu">
+        <div class="background">
+        </div>
+        <div class="CardBackgroud">
+            <div class="icon-close">
+                <i class="fas fa-times-circle" id="closeMenu"></i>
+            </div>
+            <section>
+                <label>Título</label><br />
+                <input type="text" class="tituloCard" /><br />
+                <label>Descrição</label><br />
+                <div class="addDescricao">
+                    <p class="testeBoy">Adicionar descrição</p>
+                </div>
+                <div class="conteudoDescricao">
+                    <textarea id="text" style="height:1em">Adicionar descrição</textarea><br />
+                    <button class="mostrar">OK</button>
+                </div>
+                <label>Porcentagem</label><br />
+                <select name="porcento">
+                    <option value="0">0%</option>
+                    <option value="10">10%</option>
+                    <option value="20">20%</option>
+                    <option value="30">30%</option>
+                    <option value="40">40%</option>
+                    <option value="50">50%</option>
+                    <option value="60">60%</option>
+                    <option value="70">70%</option>
+                    <option value="80">80%</option>
+                    <option value="90">90%</option>
+                    <option value="100">100%</option>
+                </select>
+                <input type="hidden" id="cardId"/><br />
+                <label>Entrega:</label>
+                <input type="date" /><br />
+                <label class="concluido">Concluído:</label>
+                <input class="checkbox" type="checkbox"/><br />
+                <button class="copiarCard">Copiar Card</button>
+                <button class="excluirCard"><i class='fas fa-trash-alt'></i></button>
+            </section>
+
+        </div>
+    </div>
+    <div class="menuTask">
+        <div class="preencher">
+            <header>
+                <h2>Novo Card</h2>
+                <i class="fas fa-times-circle" id="closeMenu"></i>
+            </header>
+            <section>
+                <label>
+                    Na Lista: 
+                    <select id="listTask">
+                    </select>
+                </label>
+
+                <label>
+                    Titulo Card
+                    <input type="text" class="tituleMenuTask" />
+                </label>
+                <label>
+                    Descrição do Card
+                    <textarea class="describe"></textarea>
+                </label>
+                <button type="submit" id="submitCard">Salvar</button>
+            </section>
+        </div>
+        <div id="back" class="back">
+        </div>
+    </div>
+    <div class="menuListConfig">
+        <main id="mainListConfig">
+            <section class="configuration">
+                <input type="text" id="NameList" />
+                <input type="hidden" id="menuListId"/>
+            </section>
+            <section class="AddPersontoList">
+                <label>Se deseja Adicionar um usuario na lista, aperte no botão abaixo</label><br />
+                <button type="button" id="addUser">+</button>
+            </section>
+            <section class="RemoveToList">
+                <label>Usuários que já estão na lista</label>
+                <select name="Usuários dentro da lista" id="usersOnList">
+                </select>
+                <button type="button" id="ExcludeUser">Excluir Usuário da Lista</button>
+            </section>
+            <section class="removeList">
+                <button type="button" id="excludeList">Excluir Lista</button>
+            </section>
+
+        </main>
+        <div id="backgroundConfig" class="back">
+        </div>
+    </div>
+    <div class="organizacao">
+        <div class="menuLateral">
+            <input type="checkbox" id="check" />
+            <label id="iconeMenu" for="check"> <img src="~/assets/icone.png" alt=""></label><br />
+            <button id="AddLista" class="btnTarefas" type="button">+Lista</button>
+            <button id="AddScope" class="btnTarefas" type="button">+Escopo</button> <!-- Alterado o local dos botões, antes estavam dentro do barra-->
+            <button id="AddTarefa" class="btnTarefas" type="button">+Tarefa</button><br />
+            <div class="barra">
+                <nav class="navLateral">
+                    @{ foreach (var item in Model)
+                        {
+                            <a id="list@(item.id)" class="List" onclick="GetTasks(this.id.toString().split('list')[1])">
+                                <div class="link"><input type="hidden" value="@item.id" />@item.Titulo</div>
+                                <div class="config"><button class="ListConfig" type="button">teste<i class="fas fa-cog"></i></button></div>
+                            </a> } }
+
+                </nav>
+            </div>
+            <div class="configuracao">
+
+            </div>
+        </div>
+        <div class="Task">
+
+        </div>
+    </div>
+</body>

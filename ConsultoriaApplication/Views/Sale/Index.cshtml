@@ -1,0 +1,103 @@
+﻿
+@model ConsultoriaApplication.Models.ViewModel.SaleViewModel
+
+<div class="container text-white rounded bg-dark">
+    <h1 class="h1">Cadastrar nova venda</h1>
+    <form asp-action="Index" id="formCadVenda" method="post">
+        <div class="form-group" id="nomeDiv">
+            <label for="emailCliente">Email do cliente</label>
+            <input type="email" asp-for="@Model.Client.Mail" class="form-control" onblur="verificaCliente(this.id);" id="emailCliente" aria-describedby="emailClienteHelp" placeholder="" required>
+            <small id="emailClienteHelp" class="form-text text-white"></small>
+        </div>
+
+        <div class="form-group infoCli" id="containerNomeCli">
+            <label for="nomeCliente">Nome do cliente</label>
+            <input asp-for="@Model.Client.Name" type="text" class="form-control" id="nomeCliente" aria-describedby="nomeClienteHelp" placeholder="" required>
+            <small id="nomeClienteHelp" class="form-text text-white"></small>
+        </div>
+        <div class="form-group infoCli">
+            <label for="sexo">Sexo</label>
+            <select asp-for="@Model.Client.Sex" class="form-control" id="sexo" required>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+            </select>
+        </div>
+
+        <div class="form-group infoCli">
+            <label for="idCliente">Telefone do cliente</label>
+            <input type="number" asp-for="@Model.Client.Tel" class="form-control" onkeypress="mascaraNumero(this.id)" id="telefoneCliente" aria-describedby="telefoneClienteHelp" placeholder="" required>
+            <small id="telefoneClienteHelp" class="form-text text-white">Insira o numero com DDD ex: 21912345678</small>
+        </div>
+
+        <!--aviso se cliente foi encontrado-->
+        <small id="avisoCliente" class="form-text text-white"></small>
+
+        <div class="form-group">
+            <label>Pagamento em cartão?</label>
+            <input type="radio" id="cartaoSim" asp-for="@Model.Sale.Cartao" value="true">
+            <label for="cartaoSim">Sim</label>
+            <input type="radio" id="cartaoNao" asp-for="@Model.Sale.Cartao" value="false">
+            <label for="cartaoNao">Não</label>
+        </div>
+        <div class="form-group">
+            <label for="fechamento">Data de fechamento</label>
+            <input type="date" asp-for="@Model.Sale.Fechamento" class="form-control" id="fechamento" required>
+        </div>
+        <div class="form-group">
+            <label for="estPagamento">Estagio do Pagamento</label>
+            <select asp-for="@Model.Sale.EstagioPagamento" class="form-control" id="estPagamento" required>
+                <option value="pago">Pago</option>
+                <option value="naoPago">Não pago</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="valTotal">Valor total</label>
+            <input type="number" asp-for="@Model.Sale.ValorTotal" class="form-control" id="valTotal" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="valPago">Valor Pago</label>
+            <input type="number" asp-for="@Model.Sale.ValorPago" class="form-control" id="valPago" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="instiEnsino">Instituição de ensino</label>
+            <input type="text" asp-for="@Model.Job.InstuicaoEnsino" class="form-control" id="instiEnsino" required>
+        </div>
+        <div class="form-group">
+            <label for="nomeOrientador">Nome orientador</label>
+            <input type="text" asp-for="@Model.Job.NomeOrientador" class="form-control" id="nomeOrientador" required>
+        </div>
+        <div class="form-group">
+            <label for="curso">Curso</label>
+            <input type="text" asp-for="@Model.Job.Curso" class="form-control" id="curso" required>
+        </div>
+        <div class="form-group">
+            <label for="tema">Tema</label>
+            <input type="text" asp-for="@Model.Job.Tema" class="form-control" id="tema" required>
+        </div>
+        <div class="form-group">
+            <label for="numPag">Numero de paginas</label>
+            <input type="number" asp-for="@Model.Job.NumPaginas" class="form-control" id="numPag" required>
+        </div>
+        <div class="form-group">
+            <label for="prev1">Primeira prévia</label>
+            <input type="date" asp-for="@Model.Job.Previa_1" class="form-control" id="prev1" required>
+        </div>
+        <div class="form-group">
+            <label for="prev2">Segunda prévia</label>
+            <input type="date" asp-for="@Model.Job.Previa_2" class="form-control" id="prev2" required>
+        </div>
+        <div class="form-group">
+            <label for="prev3">Terceira prévia</label>
+            <input type="date" asp-for="@Model.Job.Previa_3" class="form-control" id="prev3" required>
+        </div>
+        <div class="form-group">
+            <label for="dtEntrega">Data de entrega</label>
+            <input type="date" asp-for="@Model.Job.DataEntrega" class="form-control" id="dtEntrega" required>
+        </div>
+        <div class="form-group">
+            <label for="obs">Observações</label>
+            <textarea class="form-control" asp-for="@Model.Job.Observacoes" id="obs" rows="3"></textarea>
+        </div>
+        <button type="submit" id="submitCadVenda" onclick="validaForm()" class="btn btn-primary mb-2">Finalizar</button>
+    </form>
+</div>

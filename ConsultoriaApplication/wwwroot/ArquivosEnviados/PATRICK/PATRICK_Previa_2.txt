@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+#define MAX 4
+
+typedef struct{
+	char nome[50];
+	int votos;
+}Candidato;
+
+Candidato candidatos[MAX];
+void inicializarCandidato(char nome[50], int votos, int posicao);
+
+int main(int argc, char *argv[]) {
+	int i;
+	initicializarCandidato("João Bits",0,0);
+	initicializarCandidato("Joana Ponteiro",0,1);
+	initicializarCandidato("Carlos da Lan House",0,2);
+	initicializarCandidato("Nulo",0,3);
+	
+	
+	int eleitores;
+	printf("numero de eleitores: ");
+	scanf("%i",&eleitores);
+	for(i = 0;i<eleitores;i++){
+		char nome[50];
+		printf("Voto: ");
+		scanf("%s",nome);
+		if(!votos(nome)){
+			printf("Voto nulo");
+		}
+	}
+	print_vencedor();
+	return 0;
+}
+
+void inicializarCandidato(char nome[50], int votos, int posicao){
+	candidatos[posicao].nome = nome;
+	candidatos[posicao].votos = votos;
+}

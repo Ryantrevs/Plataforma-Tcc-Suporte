@@ -1,0 +1,13 @@
+﻿@model ConsultoriaApplication.Models.ViewModel.RoleViewModel
+<h1>Criar Role</h1>
+
+<form asp-action="CreateRole" asp-controller="Administration" class="col-6">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label for="pwd">Nome Role</label>
+        <input type="text" asp-for="RoleName" class="form-control" id="role" required>
+    </div>
+    
+    
+    <button type="submit" class="btn btn-primary">Criar Role</button>
+</form>

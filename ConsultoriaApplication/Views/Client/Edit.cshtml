@@ -1,0 +1,56 @@
+﻿@model ConsultoriaApplication.Models.Client
+
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+
+<div class="container bg-dark rounded text-white">
+
+    <h1 class="h3">Atualizar cliente:@Model.Name</h1>
+
+    <h4 class="h4">Informações do Cliente</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form id="editClientForm" asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" style="display:none;">
+                    <label asp-for="Id" class="control-label">Id</label>
+                    <input asp-for="Id" type="hidden" class="form-control" readonly />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Nome</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sex" class="control-label">Sexo</label>
+                    <select asp-for="Sex" class="form-control" required>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                    </select>
+                    <span asp-validation-for="Sex" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Mail" class="control-label">Email</label>
+                    <input asp-for="Mail" type="email" class="form-control" readonly />
+                    <span asp-validation-for="Mail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Tel" class="control-label">Telefone</label>
+                    <input asp-for="Tel" id="telefoneCliente" class="form-control" />
+                    <span asp-validation-for="Tel" class="text-danger"></span>
+                    <small id="telefoneClienteHelp" class="form-text text-muted">Insira o numero com DDD ex: 21912345678</small>
+                </div>
+
+                <div class="form-group">
+                    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+                    <input type="submit" id="editClientSubmit" onclick="validaFormEditClient()" value="Salvar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

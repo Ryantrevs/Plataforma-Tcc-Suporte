@@ -1,0 +1,36 @@
+﻿
+@model List<ConsultoriaApplication.Models.ViewModel.UserRolesViewModel>
+
+@{
+    var userId = ViewBag.userId;
+}
+
+<div class="container">
+
+    <form method="post" asp-controller="Administration" asp-action="ManageUserRoles">
+        <div class="card">
+            <div class="card-header">
+                <h2>Gerenciar niveis de acesso</h2>
+            </div>
+            <div class="card-body">
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model[i].RoleId" />
+                        <input type="hidden" asp-for="@Model[i].RoleName" />
+                        <input type="checkbox" asp-for="@Model[i].IsSelected" />
+                        <label class="form-check-label" asp-for="@Model[i].IsSelected">
+                            @Model[i].RoleName
+                        </label>
+                    </div>
+                }
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+            <div class="card-footer">
+                <input type="hidden" asp-for="@userId" readonly/>
+                <input type="submit" value="Atualizar" class="btn btn-primary" />
+                <a asp-action="EditUser" asp-controller="Administration" asp-route-Id="@userId" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>

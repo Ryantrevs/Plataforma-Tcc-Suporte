@@ -1,0 +1,85 @@
+﻿@model IEnumerable<User>
+
+
+@{
+    ViewBag.Title = "Todos os usuarios";
+}
+
+<div class="container">
+
+</div>
+
+@if (Model.Any())
+{
+<div class="row">
+    <div class="col-2"></div><div class="col-8"><h1 class="h1 text-white">Lista de Usuários</h1></div>
+</div>
+<div class="row">
+    <div class="col-2"></div><div class="col-8"><a class="btn btn-primary" asp-controller="Account" asp-action="Register">Criar novo</a></div>
+</div>
+        @foreach (var user in Model)
+        {
+        <div class="row ">
+            <div class="col-2"></div>
+            <div class="card col-8 bg-dark text-white">
+                <div class="card-header">
+                    Id:@user.Id
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Nome:@user.Nome<br />Email:@user.Email</h5>
+                </div>
+
+                <div class="card-footer d-flex justify-content-start">
+                    <a class="btn btn-warning text-white m-sm-2" asp-controller="Administration" asp-action="EditUser" asp-route-Id="@user.Id">Editar</a>
+                    
+                    <form method="post" class="m-sm-2"  asp-controller="Administration" asp-action="DeleteUser" asp-route-Id="@user.Id">
+                        
+                        
+                        <span id="confirmDeleteSpan_@user.Id" style="display:none;">
+                            <span>Tem certeza que deseja deletar?</span>
+                            <button type="submit" class="btn btn-danger">Sim</button>
+                            <a href="#" onclick="confirmDelete('@user.Id',false)" class="btn btn-primary">Não</a>
+                        </span>
+
+                        <span id="deleteSpan_@user.Id">
+                            <a href="#" onclick="confirmDelete('@user.Id',true)" class="btn btn-danger">Delete</a>
+                        </span>
+
+                    </form>                        
+                </div>
+            </div>
+        </div>
+            
+        }
+    
+}
+else
+{
+    <div class="card">
+        <div class="card-header">
+            Nenhum usuário cadastrado
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Clique para criar um novo usuário</h5>
+        </div>
+        <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Criar novo</a>
+    </div>
+}
+
+
+
+<script>
+
+    function confirmDelete(uniqueId, isDeleteClicked) {
+        if (isDeleteClicked) {
+            console.log("uniqueId", uniqueId)
+            $("#deleteSpan_" + uniqueId).hide();
+            $("#confirmDeleteSpan_" + uniqueId).show();
+            console.log("mostra");
+        } else {
+            $("#deleteSpan_" + uniqueId).show();
+            $("#confirmDeleteSpan_" + uniqueId).hide();
+            console.log("esconde")
+        } 
+    }
+</script>

@@ -1,0 +1,148 @@
+﻿@model ConsultoriaApplication.Models.ViewModel.SaleViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<div class="container bg-dark rounded text-white">
+    <h1 class="h1 text-white">Editar Venda</h1>
+
+    <h2 class="h3 text-white">Venda de cliente: @Model.Client.Name</h2>
+    <hr />
+    <a asp-action="Table" class="btn btn-secondary">Voltar</a>
+    <div class="row">
+        <div class="col-md-12">
+            <form id="editSaleForm" asp-action="Edit">
+                <div class="row">
+                    <div class="col">
+                        <h4>Editar venda</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group" style="display:none;">
+                            <label asp-for="Sale.Id" class="control-label">Id da venda</label>
+                            <input asp-for="Sale.Id" type="hidden" class="form-control" readonly />
+                            <span asp-validation-for="Sale.Id" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sale.ClientId" style="display:none;" class="control-label">Id do cliente</label>
+                            <input asp-for="Sale.ClientId" type="hidden" class="form-control" readonly />
+                            <span asp-validation-for="Sale.ClientId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sale.UserId" style="display:none;" class="control-label"></label>
+                            <input asp-for="Sale.UserId" type="hidden" class="form-control" readonly />
+                            <span asp-validation-for="Sale.UserId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <label asp-for="Sale.JobId" class="control-label"></label>
+                            <input asp-for="Sale.JobId" type="hidden" class="form-control" readonly />
+                            <span asp-validation-for="Sale.JobId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="Sale.Cartao" /> @Html.DisplayNameFor(model => model.Sale.Cartao)
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sale.Fechamento" class="control-label"></label>
+                            <input asp-for="Sale.Fechamento" value="@Model.Sale.Fechamento.ToString("yyyy-MM-dd")" type="date" class="form-control" required />
+                            <span asp-validation-for="Sale.Fechamento" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sale.EstagioPagamento" class="control-label"></label>
+                            <input asp-for="Sale.EstagioPagamento" class="form-control" />
+                            <span asp-validation-for="Sale.EstagioPagamento" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sale.ValorTotal" class="control-label"></label>
+                            <input asp-for="Sale.ValorTotal" id="valTotal" class="form-control" />
+                            <span asp-validation-for="Sale.ValorTotal" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Sale.ValorPago" class="control-label"></label>
+                            <input asp-for="Sale.ValorPago" id="valPago" class="form-control" />
+                            <span asp-validation-for="Sale.ValorPago" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <!--informações do job-->
+                        <div>
+                            <h4>Editar trabalho</h4>
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <label asp-for="Job.ClientId" class="control-label"></label>
+                            <input asp-for="Job.ClientId" type="hidden" class="form-control" readonly />
+                            <span asp-validation-for="Job.ClientId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group" style="display:none;">
+                            <label asp-for="Job.Id" class="control-label"></label>
+                            <input asp-for="Job.Id" type="hidden" class="form-control" readonly />
+                            <span asp-validation-for="Job.Id" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.InstuicaoEnsino" class="control-label"></label>
+                            <input asp-for="Job.InstuicaoEnsino" class="form-control" />
+                            <span asp-validation-for="Job.InstuicaoEnsino" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.NomeOrientador" class="control-label"></label>
+                            <input asp-for="Job.NomeOrientador" class="form-control" />
+                            <span asp-validation-for="Job.NomeOrientador" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.Curso" class="control-label"></label>
+                            <input asp-for="Job.Curso" class="form-control" />
+                            <span asp-validation-for="Job.Curso" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.Tema" class="control-label"></label>
+                            <input asp-for="Job.Tema" class="form-control" />
+                            <span asp-validation-for="Job.Tema" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.NumPaginas" class="control-label"></label>
+                            <input asp-for="Job.NumPaginas" id="numPag" class="form-control" />
+                            <span asp-validation-for="Job.NumPaginas" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.Previa_1" class="control-label"></label>
+                            <input asp-for="Job.Previa_1" id="prev1" type="date" class="form-control" value="@Model.Job.Previa_1.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="Job.Previa_1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.Previa_2" class="control-label"></label>
+                            <input asp-for="Job.Previa_2" id="prev2" type="date" class="form-control" value="@Model.Job.Previa_2.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="Job.Previa_2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.Previa_3" class="control-label"></label>
+                            <input asp-for="Job.Previa_3" id="prev3" type="date" class="form-control" value="@Model.Job.Previa_3.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="Job.Previa_3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.DataEntrega" class="control-label"></label>
+                            <input asp-for="Job.DataEntrega" id="dtEntrega" type="date" class="form-control" value="@Model.Job.DataEntrega.ToString("yyyy-MM-dd")" />
+                            <span asp-validation-for="Job.DataEntrega" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Job.Observacoes" class="control-label"></label>
+                            <input asp-for="Job.Observacoes" class="form-control" />
+                            <span asp-validation-for="Job.Observacoes" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <a asp-action="Table" class="btn btn-secondary">Voltar</a>
+                    <input type="submit" value="Salvar" id="editSaleSubmit" onclick="validaFormEditSale()" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+
